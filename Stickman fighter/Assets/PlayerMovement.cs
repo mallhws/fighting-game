@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -7,7 +6,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpPower = 5.0f;
     public LayerMask ground;
 	
-
     private Rigidbody2D _playerRigidbody;
     private void Start()
     {
@@ -36,16 +34,8 @@ public class PlayerMovement : MonoBehaviour
 
     private bool IsGrounded()
     {
-        var groundCheck = Physics2D.Raycast(transform.position, Vector2.down, 1f, ground);
+        var groundCheck = Physics2D.Raycast(transform.position, Vector2.down, 0.7f, ground);
         return groundCheck.collider != null;
-    }
-
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        if(col.gameObject.tag == "Kill")
-        {
-            SceneManager.LoadScene(0);
-        }
     }
 
    
